@@ -1,0 +1,25 @@
+body{
+  margin: 0;
+  font-family: Arial, sans-serif;
+}
+.container {
+  margin:auto;
+  width:clamp(600px, 80%, 1200px);  
+}
+.films-page {
+  display: flex;
+  gap: 20px;
+}
+.films-page .films-list {
+  flex:0 0 250px;
+}
+.films-page .film-details {
+  flex:1;
+}
+.films-page ul {
+  padding: 0;
+  list-style-type: none;
+}
+.films-page li {
+  margin-bottom: 10px;
+}
