@@ -1,6 +1,6 @@
+# Two React Projects to illustrate **code smells**
 
-
-# Summary of Code Smells in This File
+## Summary of Code Smells Present
 
 ### **1. God Component (Too Much Responsibility)**
 
@@ -124,15 +124,11 @@ Clutters markup and mixes concerns.
 
 Everything is hard-coded in one file rather than split into components such as:
 
-* `FilmsList`
 * `FilmDetails`
-* `FilmCard`
+* `FilmsPage`
 
 Makes code harder to maintain/extend.
-
 
 ### **15. No Separation of Concerns**
 
 Data fetching, data transformation, rendering and interactions are all tangled.
-
-

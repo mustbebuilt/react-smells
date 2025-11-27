@@ -40,4 +40,4 @@ export const ApiClient = (() => {
   }
 
   return { getAllFilms, getFilm, createFilm, updateFilm, deleteFilm };
-})();
+})()

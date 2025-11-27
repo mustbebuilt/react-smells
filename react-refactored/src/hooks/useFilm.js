@@ -1,6 +1,6 @@
-import { ApiClient } from "../services/Apiclient";
+import { ApiClient } from "../services/ApiClient.js";
 import React from "react";
-export function useFilm(id) {
+const useFilm = (id) => {
   const [film, setFilm] = React.useState(null);
   const [loading, setLoading] = React.useState(false);
   const [error, setError] = React.useState(null);
@@ -18,3 +18,4 @@ export function useFilm(id) {
 
   return { film, loading, error };
 }
+export { useFilm };
