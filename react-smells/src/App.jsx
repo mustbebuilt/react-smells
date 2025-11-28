@@ -3,9 +3,9 @@ import "./App.css";
 
 export default function AppBad() {
   const [films, setFilms] = useState([]);
-  const [selectedFilm, setSelectedFilm] = useState(null);
+  const [selected_Film, setSelected_Film] = useState(null);
   const [loading, setLoading] = useState(false);
-  const [filmLoading, setFilmLoading] = useState(false);
+  const [FilmLoading, setFilmLoading] = useState(false);
   const [theme, setTheme] = useState("light");
 
   const BASE = "https://www.mustbebuilt.co.uk/SHU/films-api/api.php";
@@ -21,8 +21,8 @@ export default function AppBad() {
   }, []);
 
   useEffect(() => {
-    // FIX: if selectedFilm is already an object, stop loading
-    if (selectedFilm && typeof selectedFilm === "object") {
+    // FIX: if selected_Film is already an object, stop loading
+    if (selected_Film && typeof selected_Film === "object") {
       setFilmLoading(false);
       return; // don't fetch again
     }
@@ -31,21 +31,20 @@ export default function AppBad() {
     // if (selectedFilm && typeof selectedFilm === "number") {
       setFilmLoading(true);
 
-      fetch(`${BASE}?filmID=${selectedFilm}`)
+      fetch(`${BASE}?filmID=${selected_Film}`)
         .then((r) => r.json())
         .then((film) => {
           setFilmLoading(false);
-          setSelectedFilm(film); // smelly: overwrite ID with full object
+          setSelected_Film(film); // smelly: overwrite ID with full object
           document.title = film.filmTitle; // smelly DOM manipulation
         });
     // }
-  }, [selectedFilm]);
-
+  }, [selected_Film]);
   function renderFilmDetails() {
-    if (!selectedFilm) return <p>Select a film</p>;
-    if (filmLoading) return <p>Loading film...</p>;
+    if (!selected_Film) return <p>Select a film</p>;
+    if (FilmLoading) return <p>Loading film...</p>;
 
-    const f = selectedFilm; // smelly: assume object
+    const f = selected_Film; // smelly: assume object
 
     return (
       <div>
@@ -63,7 +62,7 @@ export default function AppBad() {
       .then(() => {
         const newFilms = films.filter((x) => x.filmID !== id);
         setFilms(newFilms);
-        setSelectedFilm(null);
+        setSelected_Film(null);
       });
   }
 
@@ -83,7 +82,7 @@ export default function AppBad() {
                   <a href=""
                     onClick={(ev) => {
                       ev.preventDefault();
-                      setSelectedFilm(f.filmID); // smelly: reused for ID & object
+                      setSelected_Film(f.filmID); // smelly: reused for ID & object
                     }}
                   >
                     {f.filmTitle}

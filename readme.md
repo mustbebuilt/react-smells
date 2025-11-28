@@ -2,7 +2,32 @@
 
 ## Summary of Code Smells Present
 
-### **1. God Component (Too Much Responsibility)**
+### Inconsistent Naming Convention
+
+Mix of camelCase, PascalCase and snake_case.
+
+### Inline Styles Everywhere
+
+```jsx
+<div style={{ display: "flex", gap: "20px" }}>
+```
+
+Clutters markup and mixes concerns.
+
+### No Reusable Components
+
+Everything is hard-coded in one file rather than split into components such as:
+
+* `FilmDetails`
+* `FilmsPage`
+
+Makes code harder to maintain/extend.
+
+### No Separation of Concerns
+
+Data fetching, data transformation, rendering and interactions are all tangled.
+
+### God Component (Too Much Responsibility)**
 
 React Smells has one `App.jsx` that handles:
 
@@ -11,9 +36,13 @@ React Smells has one `App.jsx` that handles:
 * rendering layout
 * updating the document title
 
-**Violates SRP (Single Responsibility Principle)**.
+Violates SRP (Single Responsibility Principle).
 
-### **2. Hard-Coded API URL**
+### Deadcode
+
+The `deleteFilm()` method never called.
+
+### Hard-Coded API URL
 
 ```js
 const BASE = "https://www.mustbebuilt.co.uk/SHU/films-api/api.php";
@@ -21,7 +50,7 @@ const BASE = "https://www.mustbebuilt.co.uk/SHU/films-api/api.php";
 
 Should be in a service or environment config.
 
-### **3. Mixed State Types (selectedFilm = ID OR object)**
+### Mixed State Types (selectedFilm = ID OR object)**
 
 ```js
 setSelectedFilm(f.filmID);  // number
@@ -31,7 +60,7 @@ setSelectedFilm(film);      // object
 Causes branching logic, fragile UI behaviour, and bugs.
 
 
-### **4. Duplicate Fetch Logic**
+### Duplicate Fetch Logic
 
 Fetching list and fetching details both inline:
 
@@ -42,7 +71,7 @@ fetch(`${BASE}?filmID=${selectedFilm}`)
 
 No abstraction, repeated code.
 
-### **5. Side Effects Inside useEffect (DOM Manipulation)**
+### Side Effects Inside useEffect (DOM Manipulation)
 
 ```js
 document.title = film.filmTitle;
@@ -50,7 +79,7 @@ document.title = film.filmTitle;
 
 React should control the document title through a dedicated hook or component.
 
-### **6. Missing Error Handling**
+### Missing Error Handling
 
 Every fetch assumes success:
 
@@ -62,7 +91,7 @@ UI will silently break on network or API failure.
 
 ---
 
-### **7. Inline Anonymous Functions Doing Too Much**
+### Inline Anonymous Functions Doing Too Much
 
 ```js
 onClick={(ev) => {
@@ -73,7 +102,7 @@ onClick={(ev) => {
 
 Hard to test, hard to read.
 
-### **8. Render Function Doing Logic Work**
+###  Render Function Doing Logic Work
 
 ```js
 if (!selectedFilm) return ...
@@ -102,33 +131,3 @@ The `selectedFilm` effect fires on every change and mixes:
 * title updates
 
 Too many concerns in one effect.
-
-### **11. Anchor Tag Misused as a Button**
-
-```jsx
-<a href="" onClick={...}>
-```
-
-Needs `preventDefault()`, not semantically correct.
-
-
-### **12. Inline Styles Everywhere**
-
-```jsx
-<div style={{ display: "flex", gap: "20px" }}>
-```
-
-Clutters markup and mixes concerns.
-
-### **13. No Reusable Components**
-
-Everything is hard-coded in one file rather than split into components such as:
-
-* `FilmDetails`
-* `FilmsPage`
-
-Makes code harder to maintain/extend.
-
-### **15. No Separation of Concerns**
-
-Data fetching, data transformation, rendering and interactions are all tangled.
