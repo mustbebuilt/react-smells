@@ -42,6 +42,10 @@ Violates SRP (Single Responsibility Principle).
 
 The `deleteFilm()` method never called.
 
+### Deodorant Comments
+
+Comments that don't really tell us much.
+
 ### Hard-Coded API URL
 
 ```js
