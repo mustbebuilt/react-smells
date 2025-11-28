@@ -115,17 +115,8 @@ if (filmLoading) return ...
 
 UI and business logic mixed together.
 
-### **9. Imperative Manual State Updates After Delete**
 
-```js
-const newFilms = films.filter(...)
-setFilms(newFilms);
-setSelectedFilm(null);
-```
-
-No centralised data handling.
-
-### **10. useEffect Dependencies Wrong / Over-triggered**
+### useEffect Dependencies Wrong / Over-triggered**
 
 The `selectedFilm` effect fires on every change and mixes:
 
